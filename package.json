@@ -6,10 +6,12 @@
     "start": "DEBUG=questionbank:* nodemon ./bin/www"
   },
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "~1.17.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
     "express": "~4.15.2",
+    "jsonwebtoken": "^7.4.3",
     "mongoose": "^4.11.7",
     "morgan": "~1.8.1",
     "pug": "~2.0.0-beta11",
