@@ -5,7 +5,9 @@ var router = express.Router();
 
 //testing to see if I get anything on the page
 router.get("/", function(req, res, next) {
-  res.send("respond with a resource");
+  res.render("signup", {
+    title: "Welcome to the Question Bank. Please sign up:"
+  });
 });
 
 module.exports = router;
