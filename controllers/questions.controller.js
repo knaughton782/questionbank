@@ -9,7 +9,7 @@ exports.get = function(req, res, next) {
       if (err) next(err);
       res.render("questionList", {
         questions: payload,
-        title: "List of Questions"
+        title: "Questions List"
       });
     });
 };

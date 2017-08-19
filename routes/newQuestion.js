@@ -1,10 +1,16 @@
 var router = require("express").Router();
+var ValidationErrors = require("express-validator");
 var Question = require("../models/questions.model");
 
 router.get("/", function(req, res, next) {
-  res.render("newQuestion"), {
-    title: "Add Question Here"
-  };
+  res.render("newQuestion", {
+    title: "Add Question Here",
+    question: {
+      answer: "",
+      question: "",
+      author: ""
+    }
+  });
 });
 
 router.post("/", function(req, res, next) {
@@ -14,7 +20,7 @@ router.post("/", function(req, res, next) {
     answer: q.answer,
     author: q.author
   });
-  
+
   newQuestion.save(function(err, payload) {
     if (err) {
       var errMessage = "";
@@ -22,14 +28,18 @@ router.post("/", function(req, res, next) {
         console.log(errName);
         switch (err.errors[errName].type) {
           case ValidationErrors.REQUIRED:
-            errMessage += "Missing Field" + errName;
+            errMessage += "Missing Field: " + errName;
             break;
           case ValidationErrors.NOTVALID:
-            errMessage = "Invalid Field" + errName;
+            errMessage = "Invalid Field: " + errName;
             break;
         }
       }
-      res.send(errMessage);
+      res.render("newQuestion", {
+        question: q,
+        error: true,
+        errorMessage: errMessage
+      });
     } else {
       res.redirect("/");
     }
