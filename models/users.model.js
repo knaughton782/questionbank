@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Schema = require("mongoose").Schema;
+const Schema = mongoose.Schema;
 var bcrypt = require("bcrypt");
 
 const usersSchema = new Schema(
@@ -10,11 +10,13 @@ const usersSchema = new Schema(
     },
     email: {
       type: String,
+      unique: true,
       lowercase: true,
       required: true
     },
     password: {
       type: String,
+      unique: true,
       required: true
     }
   },
@@ -51,4 +53,4 @@ usersSchema.methods.comparePassword = function(pw, cb) {
   });
 };
 
-module.exports = mongoose.model("questionbanks", usersSchema);
+module.exports = mongoose.model("users", usersSchema);
