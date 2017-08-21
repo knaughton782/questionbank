@@ -7,4 +7,8 @@ block content
    each question in questions
     div #{question.question} #{question.author}
  a(href='/newquestion')
-  button(type="button") Click to create a new question!
+  button(class="space", type="button") Click to create a new question!
+ a(href='/signup')
+  button(class="space", type="button") Sign up here
+ a(href='/login')
+  button(class="space", type="button") Please log in
