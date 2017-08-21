@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var NewSignup = require("../models/users.model");
+var ValidationErrors = require("express-validator");
 
 //testing to see if I get anything on the page
 router.get("/", function(req, res, next) {

@@ -14,19 +14,19 @@ router.get("/", function(req, res, next) {
 });
 
 router.post("/", function(req, res, next) {
-  const l = req.body;
+  const log = req.body;
   const login = new Login({
-    email: l.email,
-    password: l.password
+    email: log.email,
+    password: log.password
   });
-  Login.aggregate([{ $match: { email: l.email } }], function(err, payload) {
+  Login.aggregate([{ $match: { email: log.email } }], function(err, payload) {
     if (err) {
       next(err);
     }
     if (payload == 0) {
       res.render("login", { errorMessage: "Invalid Entry" });
     } else {
-      res.render("users", {
+      res.redirect("../users", {
         title: "You are logged in",
         Login: payload
       });
